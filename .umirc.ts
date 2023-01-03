@@ -1,5 +1,10 @@
 import { defineConfig } from 'umi';
 
+// const VueLoaderPlugin = require('vue-loader/lib/plugin');
+
+import webpack from 'webpack'
+
+console.warn('webpack',webpack.version)
 export default defineConfig({
   nodeModulesTransform: {
     type: 'none',
@@ -8,7 +13,9 @@ export default defineConfig({
     { path: '/', component: '@/pages/index' },
   ],
   fastRefresh: {},
-  chainWebpack(){
-
+  chainWebpack(memo, { env, webpack, createCSSRule }){
+    let module = memo.module.values();
+    let plugins = memo.plugins.use(require.resolve('vue-loader/lib/plugin'));
+    debugger
   }
 });
